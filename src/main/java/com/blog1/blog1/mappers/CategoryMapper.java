@@ -5,6 +5,7 @@ import com.blog1.blog1.Domain.Category;
 import com.blog1.blog1.Domain.Post;
 import com.blog1.blog1.Domain.PostStatus;
 import com.blog1.blog1.Dtos.CategoryDto;
+import com.blog1.blog1.Dtos.CreateCategoryRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -18,6 +19,8 @@ public interface CategoryMapper {
     @Mapping(target="postCount",source="posts",qualifiedByName = "calculatedPostCount")
     CategoryDto toDto(Category category);
 
+
+    Category toEntity(CreateCategoryRequest createCategoryRequest);
     @Named("calculatedPostCount")
     default long calculatePostCount(List<Post> posts){
         if(null==posts){

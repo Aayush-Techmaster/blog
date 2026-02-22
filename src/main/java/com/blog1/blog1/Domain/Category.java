@@ -1,8 +1,6 @@
 package com.blog1.blog1.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,7 @@ import java.util.List;
 @Entity
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     String name;
 
