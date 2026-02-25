@@ -10,10 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryMapper categoryMapper;
 
+    @GetMapping("/list")
     public ResponseEntity<List<CategoryDto>> listcategories(){
         List<CategoryDto>categories=categoryService.listCategories()
                 .stream().map(categoryMapper::toDto)
@@ -42,5 +40,12 @@ public class CategoryController {
                 categoryMapper.toDto(savedCategory),
                 HttpStatus.CREATED
         ); 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
+        categoryService.deleteCategory(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }

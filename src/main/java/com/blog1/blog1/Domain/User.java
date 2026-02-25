@@ -1,11 +1,13 @@
 package com.blog1.blog1.Domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "users")
 public class User {
